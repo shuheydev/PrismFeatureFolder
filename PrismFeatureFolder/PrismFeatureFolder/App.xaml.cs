@@ -40,6 +40,9 @@ namespace PrismFeatureFolder
 
         private Type GetViewModelName(Type viewType)
         {
+            //Viewに体操するViewModelの名前を生成
+            //viewType.FullNameで取得されるのは名前空間も含めた完全名.
+            //その名前空間の｢Views｣の部分を｢ViewModels｣に置換している.
             var viewModelName = viewType.FullName.Replace("Views", "ViewModels")+"ViewModel";
             var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
             return Type.GetType($"{viewModelName}, {viewAssemblyName}");
